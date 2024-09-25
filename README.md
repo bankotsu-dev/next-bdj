@@ -14,7 +14,7 @@ llene las variables de entorno
 
 Tercero, ejecute el siguiente comando:
 ```bash
-prisma generate --- cambiar esto
+npx prisma migrate dev --name nombre_migracion
 ```
 
 Cuarto, ejecute el siguiente comando:

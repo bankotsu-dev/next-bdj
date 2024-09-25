@@ -9,8 +9,8 @@ npm install
 ```
 para instalar las dependencias del proyecto
 
-Segundo, cree una copia del aarchivo .env.example, renombrelo a .env y
-llene las varibles de entorno
+Segundo, cree una copia del archivo .env.example, renombrelo a .env y
+llene las variables de entorno
 
 Tercero, ejecute el siguiente comando:
 ```bash

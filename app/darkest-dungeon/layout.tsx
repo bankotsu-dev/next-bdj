@@ -1,4 +1,4 @@
-import SideNav from "../ui/darkest-dungeon/sidenav";
+import SideNav from "@/app/components/darkest-dungeon/sidenav";
 
 export default function Layout(
     { children } : { children : React.ReactNode}

@@ -13,3 +13,94 @@ datasource db {
   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
+
+model Regiones {
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  frase         String  @db.VarChar(255)
+  descripcion   String  @db.Text
+  desc_corta    String  @db.Text
+  img           String  @db.VarChar(255)
+  provisiones   String?  @db.Text
+}
+
+model Items {
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  descripcion   String? @db.VarChar(255)
+  img           String  @db.VarChar(255)
+}
+
+model Items_regiones{
+  id            Int     @id @default(autoincrement())
+  //item_id
+  //region_id
+  tipo          String  @db.VarChar(255)  //corta, media, larga
+  cantidad      Int
+}
+
+model Curios{
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  img           String  @db.VarChar(255)
+  //region_id
+}
+
+model Curios_items{
+  id            Int     @id @default(autoincrement())
+  //curio_id
+  //item_id
+  efecto        String  @db.VarChar(255)
+}
+
+model Clases {
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  descripcion   String? @db.VarChar(255)
+  img_retrato   String  @db.VarChar(255)
+  img           String  @db.VarChar(255)
+}
+
+model Composiciones{
+  id            Int     @id @default(autoincrement())
+  descripcion   String? @db.VarChar(255)
+  //clase_id
+  //clase_id
+  //clase_id
+  //clase_id
+}
+
+model Jefes{
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  img           String  @db.VarChar(255)
+  descripcion   String  @db.Text
+  stats_desc    String  @db.Text
+  img_stats     String  @db.VarChar(255)
+  estrategias   String? @db.Text
+  memorias_1    String? @db.Text
+  memorias_2    String? @db.Text
+  memorias_3    String? @db.Text
+}
+
+model Skills{
+  id            Int     @id @default(autoincrement())
+  nombre        String  @db.VarChar(255)
+  descripcion   String  @db.Text
+  stats         String  @db.VarChar(255)
+  img           String? @db.VarChar(255)
+  //jefe_id
+}
+
+model Clases_jefes{
+  id            Int     @id @default(autoincrement())
+  //clase_id
+  //jefe_id
+}
+
+model Composiciones_jefes{
+  id            Int     @id @default(autoincrement())
+  //composicion_id
+  //jefe_id
+}

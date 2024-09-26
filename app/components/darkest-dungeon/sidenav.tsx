@@ -1,4 +1,4 @@
-import NavLinks from '@/app/ui/darkest-dungeon/nav-links';
+import NavLinks from '@/app/components/darkest-dungeon/nav-links';
 
 export default function SideNav() {
   return (

@@ -15,63 +15,74 @@ datasource db {
 }
 
 
-model Regiones {
+model Region {
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   frase         String  @db.VarChar(255)
   descripcion   String  @db.Text
   desc_corta    String  @db.Text
   img           String  @db.VarChar(255)
-  provisiones   String?  @db.Text
+  provisiones   String? @db.Text
+  curios        Curio[]
+  jefes         Jefe[]
+  items         ItemsOnRegion[]
 }
 
-model Items {
+model Item {
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   descripcion   String? @db.VarChar(255)
   img           String  @db.VarChar(255)
+  curios        ItemsOnCurio[]
+  regiones      ItemsOnRegion[]
 }
 
-model Items_regiones{
-  id            Int     @id @default(autoincrement())
-  //item_id
-  //region_id
-  tipo          String  @db.VarChar(255)  //corta, media, larga
+model ItemsOnRegion{
+  itemId        Int
+  item          Item    @relation(fields: [itemId], references: [id])
+  regionId      Int
+  region        Region  @relation(fields: [regionId], references: [id])
   cantidad      Int
+  tipo          Int     //1: corta, 2: mediana, 3: larga
+  @@id([itemId, regionId])
 }
 
-model Curios{
+model Curio{
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   img           String  @db.VarChar(255)
-  //region_id
+  region        Region  @relation(fields: [regionId], references: [id])
+  regionId      Int
+  items         ItemsOnCurio[]
 }
 
-model Curios_items{
-  id            Int     @id @default(autoincrement())
-  //curio_id
-  //item_id
+model ItemsOnCurio{
+  curioId       Int
+  curio         Curio   @relation(fields: [curioId], references: [id])
+  itemId        Int
+  item          Item    @relation(fields: [itemId], references: [id])
   efecto        String  @db.VarChar(255)
+  @@id([curioId, itemId])
 }
 
-model Clases {
+model Clase {
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   descripcion   String? @db.VarChar(255)
   img_retrato   String  @db.VarChar(255)
   img           String  @db.VarChar(255)
+  formaciones   Formacion[]
+  jefes         Jefe[]
 }
 
-model Composiciones{
+model Formacion{
   id            Int     @id @default(autoincrement())
   descripcion   String? @db.VarChar(255)
-  //clase_id
-  //clase_id
-  //clase_id
-  //clase_id
+  clases        Clase[]
+  jefes         Jefe[]
 }
 
-model Jefes{
+model Jefe{
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   img           String  @db.VarChar(255)
@@ -82,25 +93,18 @@ model Jefes{
   memorias_1    String? @db.Text
   memorias_2    String? @db.Text
   memorias_3    String? @db.Text
+  skills        Skill[]
+  region        Region[]
+  formaciones   Formacion[]
+  clases        Clase[]
 }
 
-model Skills{
+model Skill{
   id            Int     @id @default(autoincrement())
   nombre        String  @db.VarChar(255)
   descripcion   String  @db.Text
   stats         String  @db.VarChar(255)
   img           String? @db.VarChar(255)
-  //jefe_id
-}
-
-model Clases_jefes{
-  id            Int     @id @default(autoincrement())
-  //clase_id
-  //jefe_id
-}
-
-model Composiciones_jefes{
-  id            Int     @id @default(autoincrement())
-  //composicion_id
-  //jefe_id
+  jefe          Jefe    @relation(fields: [jefeId], references: [id])
+  jefeId        Int
 }

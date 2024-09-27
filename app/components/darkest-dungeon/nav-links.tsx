@@ -17,6 +17,7 @@ const links = [
   { name: 'Curios', href: '/darkest-dungeon/curios', icon: UserGroupIcon },
   { name: 'Clases', href: '/darkest-dungeon/clases', icon: UserGroupIcon },
   { name: 'Composiciones', href: '/darkest-dungeon/composiciones', icon: UserGroupIcon },
+  { name: 'Items', href: '/darkest-dungeon/items', icon: UserGroupIcon },
   { name: 'Consejos', href: '/darkest-dungeon/consejos', icon: UserGroupIcon },
 ];
 
@@ -31,8 +32,8 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={`flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-800 p-3 text-sm 
-              font-medium hover:bg-violet-500 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3
-              ${pathname === link.href ? 'bg-violet-500 text-white' : ''}
+              font-medium hover:bg-indigo-500 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3
+              ${pathname === link.href ? 'bg-indigo-500 text-white' : ''}
             `}
           >
             <LinkIcon className="w-6" />

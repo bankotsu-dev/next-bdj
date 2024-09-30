@@ -1,18 +1,22 @@
-'use client'
 
-import { CldImage } from 'next-cloudinary';
 
-export default function Page() {
-    return (
-      <>
-      <CldImage
-        src="dd/regiones/pmosjvxtbkawoqppbzks"
-        width={1920}
-        height={520}
-        alt="ant"
-        priority
-      />
-        <h1 className="mb-4 text-xl md:text-2xl">Darkest Dungeon Regiones Page</h1>
-      </>
-    );
-  }
+import { Suspense } from 'react';
+import Tittle from '@/app/components/darkest-dungeon/tittle';
+import RegionTabla from '@/app/components/darkest-dungeon/region-table';
+import Loading from '@/app/components/ui/loading';
+import RegionCarousel from '@/app/components/darkest-dungeon/region-carousel';
+
+export default async function Page() {
+  return (
+    <>
+      {/* Carrosel de imagenes aqui */}
+      <RegionCarousel />
+      <Tittle tittle="REGIONES" />
+      <div className="py-4">
+        <Suspense fallback={<Loading />} >
+          <RegionTabla />
+        </Suspense>
+      </div>
+    </>
+  );
+}

@@ -1,9 +1,9 @@
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import RegionCard from "./region-card";
 import { getRegiones } from "@/lib/actions";
+import { Table, TableBody, TableCaption, TableCell, TableRow } from "@/components/ui/table";
+import RegionCard from "./region-card";
 
-export default async function RegionTabla () {
+export default async function RegionTabla() {
     const regiones = await getRegiones();
 
     return (

@@ -25,7 +25,7 @@ export default async function RegionCarousel() {
                     <CarouselItem key={region.id}>
                         <Card>
                             <CardContent className="flex items-center justify-center">
-                                <RegionImg {...region} />
+                                <RegionImg region = { region } />
                             </CardContent>
                         </Card>
                     </CarouselItem>

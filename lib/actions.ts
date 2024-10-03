@@ -68,7 +68,8 @@ export async function getRegion(id: number) {
         }
     });
     if (!region) {
-        return { 
+        return {
+            id: 0, 
             nombre: "REGION NO ENCONTRADA",
             frase: "REGION NO ENCONTRADA",
             descripcion: "REGION NO ENCONTRADA",

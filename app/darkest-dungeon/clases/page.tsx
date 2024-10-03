@@ -17,7 +17,7 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
   const totalPages = await getClaseTotalPages(query);
 
   return (
-    <>
+    <main className="p-2 md:p-8">
       <Tittle tittle="Clases" />
       <div className="p-4">
         <Search placeholder="Buscar" />
@@ -30,6 +30,6 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>
-    </>
+    </main>
   );
 }

@@ -8,8 +8,7 @@ import RegionCarousel from '@/app/components/darkest-dungeon/region-carousel';
 
 export default async function Page() {
   return (
-    <>
-      {/* Carrosel de imagenes aqui */}
+    <main className="p-2 md:p-8">
       <RegionCarousel />
       <Tittle tittle="REGIONES" />
       <div className="py-4">
@@ -17,6 +16,6 @@ export default async function Page() {
           <RegionTabla />
         </Suspense>
       </div>
-    </>
+    </main>
   );
 }

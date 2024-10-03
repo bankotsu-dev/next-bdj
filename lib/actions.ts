@@ -60,3 +60,22 @@ export async function getRegiones() {
     const regiones = await prisma.region.findMany();
     return regiones;
 }
+
+export async function getRegion(id: number) {
+    const region = await prisma.region.findUnique({
+        where: {
+            id: id
+        }
+    });
+    if (!region) {
+        return { 
+            nombre: "REGION NO ENCONTRADA",
+            frase: "REGION NO ENCONTRADA",
+            descripcion: "REGION NO ENCONTRADA",
+            desc_corta: "REGION NO ENCONTRADA",
+            img: "dd/regiones/pmosjvxtbkawoqppbzks",
+            provisiones: "REGION NO ENCONTRADA"
+        };
+    }
+    return region;
+}

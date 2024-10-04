@@ -38,13 +38,13 @@ model Item {
 }
 
 model ItemsOnRegion{
+  id            Int     @id @default(autoincrement())
   itemId        Int
   item          Item    @relation(fields: [itemId], references: [id])
   regionId      Int
   region        Region  @relation(fields: [regionId], references: [id])
   cantidad      Int
   tipo          Int     //1: corta, 2: mediana, 3: larga
-  @@id([itemId, regionId])
 }
 
 model Curio{

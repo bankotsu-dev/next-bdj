@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   console.log(region);
 
   return (
-    <main>{ }
+    <main className="md:text-lg">
       <RegionImg region={region} />
       <div className="p-2 md:p-8">
         <div className="italic text-end">"{region.frase}"</div>

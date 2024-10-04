@@ -8,11 +8,14 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Item } from '@/lib/definitions';
 
 
 
 
-export default function ItemCard({ nombre, descripcion, img }: { nombre: string, descripcion: string | null, img: string }) {
+export default function ItemCard({ item }: { item: Item }) {
+    const { nombre, descripcion, img } = item;
+    
     return (
         <Card key={nombre} className="text-center">
             <CardHeader>

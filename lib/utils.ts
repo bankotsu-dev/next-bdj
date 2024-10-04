@@ -37,3 +37,7 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const statusOK = 'ok';
+
+export const statusError = 'error';

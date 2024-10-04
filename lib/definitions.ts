@@ -33,3 +33,10 @@ export type Region = {
   img: string;
   provisiones: string | null;
 }
+
+export type Item = {
+  id: number;
+  nombre: string;
+  descripcion: string | null;
+  img: string;
+}

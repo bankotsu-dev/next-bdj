@@ -1,7 +1,13 @@
 'use server'
 
 import prisma from "./db";
+import { statusError, statusOK } from "./utils";
 
+interface Response {
+    status: string
+    message: string
+    data?: any
+}
 
 //Item
 export async function getItems() {
@@ -75,8 +81,29 @@ export async function getRegion(id: number) {
             descripcion: "REGION NO ENCONTRADA",
             desc_corta: "REGION NO ENCONTRADA",
             img: "dd/regiones/pmosjvxtbkawoqppbzks",
-            provisiones: "REGION NO ENCONTRADA"
+            provisiones: "REGION NO ENCONTRADA",
         };
     }
     return region;
+}
+
+export async function getProvisiones(regionId: number, tipo: number): Promise<Response> {
+    try {
+        const provisiones = await prisma.itemsOnRegion.findMany({
+            where: {
+                regionId: regionId,
+                tipo: tipo
+            },
+            orderBy: {
+                cantidad: 'desc'
+            },
+            include: {
+                item: true
+            }
+        });
+        return { status: statusOK, message: "Provisiones encontradas", data: provisiones };
+    } catch (error) {
+        console.log(error);
+        return { status: statusError, message: "Error al buscar provisiones, revise la consola del servidor" };
+    }
 }

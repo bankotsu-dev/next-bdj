@@ -29,12 +29,9 @@ export default async function RegionProvisiones({ regionID, tipo, titulo }: { re
     });
 
     return (
-        <div className="flex max-h-screen mt-8">
-            <div className="relative flex w-full  flex-row rounded-xl bg-clip-border text-white shadow-md">
-                <div className="relative mr-2 sm:mr-4 md:mr-6 w-3/5 shrink-0 overflow-hidden rounded-xl rounded-r-non bg-clip-border">
-                    <ProvisionesItems items={provisionesItems} tipo={tipo} />
-                </div>
-                <div className="md:ml-4 xl:ml-8">
+        <div className={`flex max-h-screen mt-8 ${ provisiones.length < 1 ? 'hidden' : ''}`}>
+            <div className="relative flex w-full flex-row rounded-xl bg-clip-border text-white shadow-md">
+                <div className="w-full sm:w-1/3">
                     <h6 className="mb-2 block font-sans text-3xl font-semibold leading-relaxed tracking-normal text-yellow-600 antialiased">
                         {titulo}
                     </h6>
@@ -49,6 +46,9 @@ export default async function RegionProvisiones({ regionID, tipo, titulo }: { re
                             }
                         </ul>
                     </div>
+                </div>
+                <div className="relative mr-2 rounded-xl rounded-r-non bg-clip-border">
+                    <ProvisionesItems items={provisionesItems} tipo={tipo} />
                 </div>
             </div>
         </div>

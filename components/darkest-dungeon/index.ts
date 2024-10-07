@@ -14,3 +14,6 @@ export * from './clases/clase-table';
 
 //items
 export * from './items/item-grid-card';
+
+//curios
+export * from './curios/curio-table';

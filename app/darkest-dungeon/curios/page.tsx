@@ -1,6 +1,6 @@
 
 import { Suspense } from "react";
-import { ClaseTable, Tittle } from "@/components/darkest-dungeon/index";
+import { CurioTable, Tittle } from "@/components/darkest-dungeon/index";
 import { Loading, Pagination, Search } from "@/components/ui/index";
 import { getClaseTotalPages } from "@/lib/actions";
 
@@ -21,7 +21,7 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
       </div>
       <div className="py-4">
         <Suspense key={ query + currentPage } fallback={<Loading />} >
-          <ClaseTable query={ query } currentPage={ currentPage } />
+          <CurioTable query={ query } currentPage={ currentPage } />
         </Suspense>
       </div>
       <div className="mt-5 flex w-full justify-center">

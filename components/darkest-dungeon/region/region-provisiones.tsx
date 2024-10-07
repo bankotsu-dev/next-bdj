@@ -1,7 +1,7 @@
 
+import ProvisionesItems from "./provisiones-items";
 import { getProvisiones } from "@/lib/actions";
 import { Item } from "@/lib/definitions";
-import ProvisionesItems from "../provisiones-items";
 
 interface Provisiones {
     id: number;

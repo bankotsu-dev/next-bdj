@@ -3,7 +3,7 @@
 import { CldImage } from "next-cloudinary"
 import { Clase } from "@/lib/definitions"
 
-export default function ClaseCard(clase: Clase) {
+export function ClaseCard(clase: Clase) {
     return (
         <div className="flex max-h-screen items-center justify-center">
             <div className="relative flex w-full  flex-row rounded-xl bg-clip-border text-white shadow-md">

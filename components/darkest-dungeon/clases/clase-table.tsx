@@ -2,9 +2,9 @@
 
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getClases } from "@/lib/actions";
-import ClaseCard from "./clase-card";
+import { ClaseCard } from "./clase-card";
 
-export default async function ClaseTabla({ query, currentPage }: { query: string, currentPage: number }) {
+export async function ClaseTable({ query, currentPage }: { query: string, currentPage: number }) {
     const clases = await getClases(query, currentPage);
 
     return (

@@ -13,7 +13,7 @@ import { Item } from '@/lib/definitions';
 
 
 
-export default function ItemCard({ item }: { item: Item }) {
+export function ItemCard({ item }: { item: Item }) {
     const { nombre, descripcion, img } = item;
     
     return (

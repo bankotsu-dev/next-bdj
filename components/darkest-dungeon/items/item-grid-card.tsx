@@ -1,8 +1,8 @@
 
 import { getItems } from '@/lib/actions';
-import ItemCard from '../../components/darkest-dungeon/item-card';
+import { ItemCard } from './item-card';
 
-export default async function () {
+export async function ItemGridCard() {
     const items = await getItems();
     
     return(

@@ -1,10 +1,7 @@
 
 import { Suspense } from "react";
-import ClaseTable from "@/components/darkest-dungeon/clase-table";
-import Search from "@/components/ui/search";
-import Tittle from "@/components/darkest-dungeon/tittle";
-import Loading from "@/components/ui/loading";
-import Pagination from "@/components/ui/pagination";
+import { Loading, Pagination, Search } from "@/components/ui/index";
+import {ClaseTable, Tittle} from "@/components/darkest-dungeon/index";
 import { getClaseTotalPages } from "@/lib/actions";
 
 

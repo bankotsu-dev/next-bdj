@@ -1,10 +1,10 @@
 
 
 import { Suspense } from 'react';
-import Tittle from '@/app/components/darkest-dungeon/tittle';
-import RegionTabla from '@/app/components/darkest-dungeon/region-table';
-import Loading from '@/app/components/ui/loading';
-import RegionCarousel from '@/app/components/darkest-dungeon/region-carousel';
+import Tittle from '@/components/darkest-dungeon/tittle';
+import RegionTabla from '@/components/darkest-dungeon/region-table';
+import Loading from '@/components/ui/loading';
+import RegionCarousel from '@/components/darkest-dungeon/region-carousel';
 
 export default async function Page() {
   return (

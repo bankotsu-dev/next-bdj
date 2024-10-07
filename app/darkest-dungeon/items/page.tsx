@@ -1,8 +1,8 @@
 
 
 import { Suspense } from "react";
-import ItemGridCard from "@/app/components/darkest-dungeon/item-grid-card";
-import Tittle from "@/app/components/darkest-dungeon/tittle";
+import ItemGridCard from "@/components/darkest-dungeon/item-grid-card";
+import Tittle from "@/components/darkest-dungeon/tittle";
 
 export default function Page() {
 

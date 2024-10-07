@@ -1,10 +1,10 @@
 
 import { Suspense } from "react";
-import ClaseTable from "@/app/components/darkest-dungeon/clase-table";
-import Search from "@/app/components/ui/search";
-import Tittle from "@/app/components/darkest-dungeon/tittle";
-import Loading from "@/app/components/ui/loading";
-import Pagination from "@/app/components/ui/pagination";
+import ClaseTable from "@/components/darkest-dungeon/clase-table";
+import Search from "@/components/ui/search";
+import Tittle from "@/components/darkest-dungeon/tittle";
+import Loading from "@/components/ui/loading";
+import Pagination from "@/components/ui/pagination";
 import { getClaseTotalPages } from "@/lib/actions";
 
 
@@ -18,7 +18,7 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
 
   return (
     <main className="p-2 md:p-8">
-      <Tittle tittle="Clases" />
+      <Tittle tittle="CLASES" />
       <div className="p-4">
         <Search placeholder="Buscar" />
       </div>

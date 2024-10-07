@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { ThemeProvider } from "@/app/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider"
 import Sidebar from "@/components/sidebar";
 import "./globals.css";
 

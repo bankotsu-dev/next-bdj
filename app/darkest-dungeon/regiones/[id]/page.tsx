@@ -1,9 +1,9 @@
 
 import { Suspense } from "react";
-import RegionImg from "@/app/components/darkest-dungeon/region-img";
-import Tittle from "@/app/components/darkest-dungeon/tittle";
+import RegionImg from "@/components/darkest-dungeon/region-img";
+import Tittle from "@/components/darkest-dungeon/tittle";
 import { getRegion } from "@/lib/actions";
-import RegionProvisiones from "@/app/components/darkest-dungeon/region-provisiones";
+import RegionProvisiones from "@/components/darkest-dungeon/region-provisiones";
 
 
 export default async function Page({ params }: { params: { id: string } }) {

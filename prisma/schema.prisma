@@ -48,12 +48,14 @@ model ItemsOnRegion{
 }
 
 model Curio{
-  id            Int     @id @default(autoincrement())
-  nombre        String  @db.VarChar(255)
-  img           String  @db.VarChar(255)
-  region        Region  @relation(fields: [regionId], references: [id])
-  regionId      Int
-  items         ItemsOnCurio[]
+  id              Int       @id @default(autoincrement())
+  nombre          String    @db.VarChar(255)
+  ll_nombre       String?   @db.VarChar(255)
+  img             String    @db.VarChar(255)
+  region          Region?   @relation(fields: [regionId], references: [id])
+  regionId        Int?
+  items           ItemsOnCurio[]
+  nombre_archivo  String?  @db.VarChar(255)
 }
 
 model ItemsOnCurio{

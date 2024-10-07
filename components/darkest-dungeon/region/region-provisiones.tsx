@@ -1,7 +1,7 @@
 
 import { getProvisiones } from "@/lib/actions";
 import { Item } from "@/lib/definitions";
-import ProvisionesItems from "./provisiones-items";
+import ProvisionesItems from "../provisiones-items";
 
 interface Provisiones {
     id: number;
@@ -18,7 +18,7 @@ interface Provision {
     item: Item;
 }
 
-export default async function RegionProvisiones({ regionID, tipo, titulo }: { regionID: number, tipo: number, titulo: string }) {
+export async function RegionProvisiones ({ regionID, tipo, titulo }: { regionID: number, tipo: number, titulo: string }) {
     const data = await getProvisiones(regionID, tipo);
     const provisiones = data.data as Provisiones[];
     const provisionesItems = provisiones.map(({ cantidad, item }) => {

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { CldImage } from "next-cloudinary"
 import { Region } from "@/lib/definitions"
 
-export default function (region: Region) {
+export function RegionCard (region: Region) {
     return (
         <Link key={region.id} href={`/darkest-dungeon/regiones/${region.id}`}>
             <div className="flex max-h-screen items-center justify-center">

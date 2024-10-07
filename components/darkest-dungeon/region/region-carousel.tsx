@@ -1,7 +1,7 @@
 
-import RegionImg from "./region-img";
 import { Card, CardContent } from "@/components/ui/card"
 import { getRegiones } from '@/lib/actions';
+import { RegionImg } from "./region-img";
 import {
     Carousel,
     CarouselContent,
@@ -10,7 +10,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 
-export default async function RegionCarousel() {
+export async function RegionCarousel() {
 
     const regiones = await getRegiones();
     return (

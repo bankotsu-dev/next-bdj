@@ -3,7 +3,7 @@
 import { Region } from "@/lib/definitions";
 import { CldImage } from "next-cloudinary";
 
-export default function RegionImg({region}: {region: Region}) {
+export function RegionImg ({region}: {region: Region}) {
     return (
         <CldImage
             src={region.img}

@@ -2,9 +2,10 @@
 
 import { Suspense } from 'react';
 import Tittle from '@/components/darkest-dungeon/tittle';
-import RegionTabla from '@/components/darkest-dungeon/region-table';
+//import { RegionTable, RegionCarousel } from '@/components';
+import {RegionTable} from '@/components/darkest-dungeon/region/region-table';
+import {RegionCarousel} from '@/components/darkest-dungeon/region/region-carousel';
 import Loading from '@/components/ui/loading';
-import RegionCarousel from '@/components/darkest-dungeon/region-carousel';
 
 export default async function Page() {
   return (
@@ -13,7 +14,7 @@ export default async function Page() {
       <Tittle tittle="REGIONES" />
       <div className="py-4">
         <Suspense fallback={<Loading />} >
-          <RegionTabla />
+          <RegionTable />
         </Suspense>
       </div>
     </main>

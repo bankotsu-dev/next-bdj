@@ -40,3 +40,13 @@ export type Item = {
   descripcion: string | null;
   img: string;
 }
+
+export type Curio = {
+  id: number;
+  nombre: string;
+  ll_nombre: string;
+  img: string;
+  region: Region | null;
+  items: Item[] | null;
+  nombre_archivo: string | null;
+}

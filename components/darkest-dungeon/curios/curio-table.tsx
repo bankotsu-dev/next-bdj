@@ -3,10 +3,12 @@
 import { getCurios } from "@/lib/actions";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { CurioCard } from "./curio-card";
+import { Curio } from "@/lib/definitions";
 
 export async function CurioTable({ query, currentPage }: { query: string, currentPage: number }) {
     const data = await getCurios(query, currentPage);
-    const curios = data.data as [];
+    const curios = data.data as Curio[];
+    console.log(curios);
 
     return (
         <>
@@ -19,10 +21,10 @@ export async function CurioTable({ query, currentPage }: { query: string, curren
                 </TableHeader>
                 <TableBody>
                     {
-                        curios.map((curio: any) => (
+                        curios.map((curio:Curio) => (
                             <TableRow key={curio.id}>
                                 <TableCell className="font-medium">
-                                    <CurioCard />
+                                    <CurioCard  {...curio}/>
                                 </TableCell>
                             </TableRow>
                         ))

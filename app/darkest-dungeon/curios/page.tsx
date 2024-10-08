@@ -2,7 +2,7 @@
 import { Suspense } from "react";
 import { CurioTable, Tittle } from "@/components/darkest-dungeon/index";
 import { Loading, Pagination, Search } from "@/components/ui/index";
-import { getClaseTotalPages } from "@/lib/actions";
+import { getCurioTotalPages } from "@/lib/actions";
 
 
 
@@ -11,7 +11,7 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
 {
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || '';
-  const totalPages = await getClaseTotalPages(query);
+  const totalPages = await getCurioTotalPages(query);
 
   return (
     <main className="p-2 md:p-8">

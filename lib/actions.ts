@@ -114,14 +114,23 @@ export async function getCurios(nombre: string | null, curretPage: number): Prom
         if (nombre) {
             const curios = await prisma.curio.findMany({
                 where: {
-
+                    OR: [
+                        { nombre: { contains: nombre, mode: "insensitive" } },
+                        {  ll_nombre: { contains: nombre, mode: "insensitive" } },  
+                    ]
+                },
+                include: {
+                    region: true,
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
         }
         const curios = await prisma.curio.findMany({
             skip: (curretPage - 1) * 10,
-            take: 10
+            take: 10,
+            include: {
+                region: true,
+            }
         });
         return { status: statusOK, message: "Curios encontrados", data: curios };
     } catch (error) {
@@ -129,3 +138,28 @@ export async function getCurios(nombre: string | null, curretPage: number): Prom
         return { status: statusError, message: "Error al buscar curios, revise la consola del servidor" };
     }
 }
+
+export async function getCurioTotalPages(nombre: string | null) {
+    var curios;
+    if (nombre) {
+        curios = await prisma.curio.count({
+            where: {
+                nombre: {
+                    contains: nombre,
+                    mode: "insensitive"
+                }
+            }
+        });
+    } else {
+        curios = await prisma.curio.count();
+    }
+    const subtotal = curios / 10;
+    const residuo = curios %10;
+    var totalPages = Math.trunc(subtotal);
+    if (residuo > 0) {
+        totalPages++;
+    }
+
+    return totalPages;
+}
+

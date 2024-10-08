@@ -85,14 +85,14 @@ const Sidebar = () => {
     return (
         <div className="fixed top-0 left-0 h-screen w-64 bg-dark text-white shadow-lg z-10 p-4">
             <div className="flex flex-col space-y-10 w-full">
-                <CldImage
+                {/* <CldImage
                     src="NAMI_WANTED_mb2tji"
                     className="h-30 w-fit"
                     width={403}
                     height={581}
                     alt="Logo"
                     priority
-                />
+                /> */}
                 <div className="flex flex-col space-y-2">
                     {items.map((item, index) => (
                         <SidebarItem key={index} item={item} />

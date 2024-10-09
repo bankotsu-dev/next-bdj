@@ -109,9 +109,10 @@ export async function getProvisiones(regionId: number, tipo: number): Promise<Re
 }
 
 //Curios
-export async function getCurios(nombre: string | null, curretPage: number): Promise<Response> {
+export async function getCurios(nombre: string | null, curretPage: number, region: number): Promise<Response> {
     try {
-        if (nombre) {
+        //busqueda por nombre
+        if (nombre && region === 0) {
             const curios = await prisma.curio.findMany({
                 where: {
                     OR: [
@@ -125,6 +126,39 @@ export async function getCurios(nombre: string | null, curretPage: number): Prom
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
         }
+        //busqueda por nombre y region
+        if (nombre && region > 0) {
+            const curios = await prisma.curio.findMany({
+                where: {
+                    AND: [
+                        { regionId: region },
+                        {
+                            OR: [
+                                { nombre: { contains: nombre, mode: "insensitive" } },
+                                { ll_nombre: { contains: nombre, mode: "insensitive" } },
+                            ]
+                        }
+                    ]
+                },
+                include: {
+                    region: true,
+                }
+            });
+            return { status: statusOK, message: "Curios encontrados", data: curios };
+        }
+        //busqueda por region
+        if(region > 0){
+            const curios = await prisma.curio.findMany({
+                where: {
+                    regionId: region
+                },
+                include: {
+                    region: true,
+                }
+            });
+            return { status: statusOK, message: "Curios encontrados", data: curios };
+        }
+        //busqueda sin filtros
         const curios = await prisma.curio.findMany({
             skip: (curretPage - 1) * 10,
             take: 10,
@@ -158,6 +192,9 @@ export async function getCurioTotalPages(nombre: string | null) {
     var totalPages = Math.trunc(subtotal);
     if (residuo > 0) {
         totalPages++;
+    }
+    if (totalPages === 0) {
+        totalPages = 1;
     }
 
     return totalPages;

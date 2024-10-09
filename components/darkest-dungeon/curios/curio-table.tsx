@@ -5,8 +5,8 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { CurioCard } from "./curio-card";
 import { Curio } from "@/lib/definitions";
 
-export async function CurioTable({ query, currentPage }: { query: string, currentPage: number }) {
-    const data = await getCurios(query, currentPage);
+export async function CurioTable({ query, currentPage, region }: { query: string, currentPage: number, region: number }) {
+    const data = await getCurios(query, currentPage, region);
     const curios = data.data as Curio[];
     console.log(curios);
 

@@ -25,7 +25,7 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
       </div>
       <div className="py-4">
         <Suspense key={ query + currentPage } fallback={<Loading />} >
-          <CurioTable query={ query } currentPage={ currentPage } />
+          <CurioTable query={ query } currentPage={ currentPage } region={ region }/>
         </Suspense>
       </div>
       <div className="mt-5 flex w-full justify-center">

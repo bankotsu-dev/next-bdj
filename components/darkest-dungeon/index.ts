@@ -17,3 +17,4 @@ export * from './items/item-grid-card';
 
 //curios
 export * from './curios/curio-table';
+export * from './curios/select-region';

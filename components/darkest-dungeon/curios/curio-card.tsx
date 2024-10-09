@@ -22,7 +22,7 @@ export function CurioCard(curio : Curio) {
                 </h6>
                 <span className="text-xs"> { curio.region?.nombre } </span>
                 <p className="mt-4 block font-sans text-base font-normal leading-relaxed text-white antialiased">
-                    <span className="text-2xl">"</span>asd<span className="text-2xl">"</span>
+                   ... continuara
                 </p>
             </div>
         </div>

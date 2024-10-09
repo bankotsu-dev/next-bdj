@@ -59,12 +59,12 @@ model Curio{
 }
 
 model ItemsOnCurio{
+  id            Int     @id @default(autoincrement())
   curioId       Int
   curio         Curio   @relation(fields: [curioId], references: [id])
-  itemId        Int
-  item          Item    @relation(fields: [itemId], references: [id])
+  itemId        Int?
+  item          Item?    @relation(fields: [itemId], references: [id])
   efecto        String  @db.VarChar(255)
-  @@id([curioId, itemId])
 }
 
 model Clase {

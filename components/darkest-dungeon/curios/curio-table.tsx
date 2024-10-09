@@ -31,7 +31,6 @@ export async function CurioTable({ query, currentPage }: { query: string, curren
                     }
                 </TableBody>
             </Table>
-
         </>
     )
 }

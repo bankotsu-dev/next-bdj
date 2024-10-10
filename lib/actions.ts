@@ -20,8 +20,8 @@ export async function getItems() {
 export async function getClases(nombre: string | null, curretPage: number) {
     if (nombre) {
         const clases = await prisma.clase.findMany({
-            skip: (curretPage - 1) * 5,
-            take: 5,
+            skip: (curretPage - 1) * 10,
+            take: 10,
             where: {
                 nombre: {
                     contains: nombre.toUpperCase()
@@ -31,8 +31,8 @@ export async function getClases(nombre: string | null, curretPage: number) {
         return clases;
     }
     const clases = await prisma.clase.findMany({
-        skip: (curretPage - 1) * 5,
-        take: 5
+        skip: (curretPage - 1) * 10,
+        take: 10
     });
     return clases;
 }
@@ -50,8 +50,8 @@ export async function getClaseTotalPages(nombre: string | null) {
     } else {
         clases = await prisma.clase.count();
     }
-    const subtotal = clases / 5;
-    const residuo = clases % 5;
+    const subtotal = clases / 10;
+    const residuo = clases % 10;
     var totalPages = Math.trunc(subtotal);
     if (residuo > 0) {
         totalPages++;
@@ -114,10 +114,12 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
         //busqueda por nombre
         if (nombre && region === 0) {
             const curios = await prisma.curio.findMany({
+                skip: (curretPage - 1) * 10,
+                take: 10,
                 where: {
                     OR: [
                         { nombre: { contains: nombre, mode: "insensitive" } },
-                        {  ll_nombre: { contains: nombre, mode: "insensitive" } },  
+                        { ll_nombre: { contains: nombre, mode: "insensitive" } },
                     ]
                 },
                 include: {
@@ -129,6 +131,8 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
         //busqueda por nombre y region
         if (nombre && region > 0) {
             const curios = await prisma.curio.findMany({
+                skip: (curretPage - 1) * 10,
+                take: 10,
                 where: {
                     AND: [
                         { regionId: region },
@@ -147,8 +151,10 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
             return { status: statusOK, message: "Curios encontrados", data: curios };
         }
         //busqueda por region
-        if(region > 0){
+        if (region > 0) {
             const curios = await prisma.curio.findMany({
+                skip: (curretPage - 1) * 10,
+                take: 10,
                 where: {
                     regionId: region
                 },
@@ -173,22 +179,50 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
     }
 }
 
-export async function getCurioTotalPages(nombre: string | null) {
-    var curios;
-    if (nombre) {
+export async function getCurioTotalPages(nombre: string | null, region: number) {
+    var curios = 0;
+    if (nombre && region === 0) {
         curios = await prisma.curio.count({
             where: {
-                nombre: {
-                    contains: nombre,
-                    mode: "insensitive"
-                }
-            }
+                OR: [
+                    { nombre: { contains: nombre, mode: "insensitive" } },
+                    { ll_nombre: { contains: nombre, mode: "insensitive" } },
+                ]
+            },
         });
-    } else {
+    }
+    //busqueda por nombre y region
+    if (nombre && region > 0) {
+        curios = await prisma.curio.count({
+            where: {
+                AND: [
+                    { regionId: region },
+                    {
+                        OR: [
+                            { nombre: { contains: nombre, mode: "insensitive" } },
+                            { ll_nombre: { contains: nombre, mode: "insensitive" } },
+                        ]
+                    }
+                ]
+            },
+        });
+    }
+    //busqueda por region
+    if (!nombre && region > 0) {
+        curios = await prisma.curio.count({
+            where: {
+                regionId: region
+            },
+        });
+    }
+    //busqueda sin filtros
+    if (!nombre && region === 0) {
         curios = await prisma.curio.count();
     }
+
+
     const subtotal = curios / 10;
-    const residuo = curios %10;
+    const residuo = curios % 10;
     var totalPages = Math.trunc(subtotal);
     if (residuo > 0) {
         totalPages++;

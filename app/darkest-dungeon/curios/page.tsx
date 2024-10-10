@@ -12,13 +12,12 @@ export default async function Page({ searchParams}: {searchParams?: { query?: st
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || '';
   const region = Number(searchParams?.region) || 0;
-  const totalPages = await getCurioTotalPages(query);
+  const totalPages = await getCurioTotalPages(query, region);
   const regiones = await getRegiones();
 
   return (
     <main className="p-2 md:p-8">
       <Tittle tittle="CURIOS" />
-      <div>{ region }</div>
       <div className="p-4 flex">
         <Search placeholder="Buscar" />
         <SelectRegion  regiones={regiones } />

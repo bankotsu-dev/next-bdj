@@ -54,7 +54,7 @@ model Curio{
   img             String    @db.VarChar(255)
   region          Region?   @relation(fields: [regionId], references: [id])
   regionId        Int?
-  items           ItemsOnCurio[]
+  itemsOnCurio    ItemsOnCurio[]
   nombre_archivo  String?  @db.VarChar(255)
 }
 

@@ -4,6 +4,7 @@ import { CldImage } from "next-cloudinary";
 import { Curio } from "@/lib/definitions";
 
 export function CurioCard(curio : Curio) {
+    console.log(curio);
     return (
         <div className="flex max-h-screen items-center justify-center">
         <div className="relative flex w-full  flex-row rounded-xl bg-clip-border text-white shadow-md">

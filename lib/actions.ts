@@ -3,6 +3,7 @@
 import { it } from "node:test";
 import prisma from "./db";
 import { statusError, statusOK } from "./utils";
+import { ItemsOnCurio } from './definitions';
 
 interface Response {
     status: string
@@ -175,7 +176,7 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                             id: true,
                             nombre: true,
                         }
-                    }
+                    },
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
@@ -183,15 +184,15 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
         //busqueda sin filtros
         const curios = await prisma.curio.findMany({
             skip: (curretPage - 1) * 10,
-            take: 10,
+            take: 2,
             include: {
                 region: {
                     select: {
                         id: true,
                         nombre: true,
-                    }
-                }
-                
+                    },
+                },
+                itemsOnCurio: true,
             }
         });
         return { status: statusOK, message: "Curios encontrados", data: curios };
@@ -255,4 +256,3 @@ export async function getCurioTotalPages(nombre: string | null, region: number) 
 
     return totalPages;
 }
-

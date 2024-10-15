@@ -106,7 +106,6 @@ model Skill{
   nombre        String  @db.VarChar(255)
   descripcion   String  @db.Text
   stats         String  @db.VarChar(255)
-  img           String? @db.VarChar(255)
   jefe          Jefe    @relation(fields: [jefeId], references: [id])
   jefeId        Int
 }

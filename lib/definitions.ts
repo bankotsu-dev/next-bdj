@@ -41,12 +41,19 @@ export type Item = {
   img: string;
 }
 
+export type ItemsOnCurio = {
+  id: number;
+  curio: Curio;
+  item: Item | null;
+  efecto: string;
+}
+
 export type Curio = {
   id: number;
   nombre: string;
   ll_nombre: string;
   img: string;
   region: Region | null;
-  items: Item[] | null;
+  items: ItemsOnCurio[];
   nombre_archivo: string | null;
 }

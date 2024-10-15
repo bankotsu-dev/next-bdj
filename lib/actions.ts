@@ -1,5 +1,6 @@
 'use server'
 
+import { it } from "node:test";
 import prisma from "./db";
 import { statusError, statusOK } from "./utils";
 
@@ -123,7 +124,12 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                     ]
                 },
                 include: {
-                    region: true,
+                    region: {
+                        select: {
+                            id: true,
+                            nombre: true,
+                        }
+                    }
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
@@ -145,7 +151,12 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                     ]
                 },
                 include: {
-                    region: true,
+                    region: {
+                        select: {
+                            id: true,
+                            nombre: true,
+                        }
+                    }
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
@@ -159,7 +170,12 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                     regionId: region
                 },
                 include: {
-                    region: true,
+                    region: {
+                        select: {
+                            id: true,
+                            nombre: true,
+                        }
+                    }
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };
@@ -169,7 +185,13 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
             skip: (curretPage - 1) * 10,
             take: 10,
             include: {
-                region: true,
+                region: {
+                    select: {
+                        id: true,
+                        nombre: true,
+                    }
+                }
+                
             }
         });
         return { status: statusOK, message: "Curios encontrados", data: curios };

@@ -184,7 +184,7 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
         //busqueda sin filtros
         const curios = await prisma.curio.findMany({
             skip: (curretPage - 1) * 10,
-            take: 2,
+            take: 10,
             include: {
                 region: {
                     select: {
@@ -192,7 +192,17 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                         nombre: true,
                     },
                 },
-                itemsOnCurio: true,
+                itemsOnCurio: {
+                    select: {
+                        id: true,
+                        efecto: true,
+                        item: {
+                            select: {
+                                nombre: true,
+                            }
+                        }
+                    }
+                }
             }
         });
         return { status: statusOK, message: "Curios encontrados", data: curios };

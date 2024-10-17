@@ -54,6 +54,6 @@ export type Curio = {
   ll_nombre: string;
   img: string;
   region: Region | null;
-  items: ItemsOnCurio[];
+  itemsOnCurio: ItemsOnCurio[];
   nombre_archivo: string | null;
 }

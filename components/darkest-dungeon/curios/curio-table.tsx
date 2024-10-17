@@ -8,7 +8,6 @@ import { Curio } from "@/lib/definitions";
 export async function CurioTable({ query, currentPage, region }: { query: string, currentPage: number, region: number }) {
     const data = await getCurios(query, currentPage, region);
     const curios = data.data as Curio[];
-    console.log(curios);
 
     return (
         <>

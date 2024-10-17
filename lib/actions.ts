@@ -130,6 +130,17 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                             id: true,
                             nombre: true,
                         }
+                    },
+                    itemsOnCurio: {
+                        select: {
+                            id: true,
+                            efecto: true,
+                            item: {
+                                select: {
+                                    nombre: true,
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -157,6 +168,17 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                             id: true,
                             nombre: true,
                         }
+                    },
+                    itemsOnCurio: {
+                        select: {
+                            id: true,
+                            efecto: true,
+                            item: {
+                                select: {
+                                    nombre: true,
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -177,6 +199,17 @@ export async function getCurios(nombre: string | null, curretPage: number, regio
                             nombre: true,
                         }
                     },
+                    itemsOnCurio: {
+                        select: {
+                            id: true,
+                            efecto: true,
+                            item: {
+                                select: {
+                                    nombre: true,
+                                }
+                            }
+                        }
+                    }
                 }
             });
             return { status: statusOK, message: "Curios encontrados", data: curios };

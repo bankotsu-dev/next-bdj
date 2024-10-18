@@ -299,3 +299,31 @@ export async function getCurioTotalPages(nombre: string | null, region: number) 
 
     return totalPages;
 }
+
+export async function getCuriosByRegion(regionId: number): Promise<Response> {
+    const curios = await prisma.curio.findMany({
+        where: {
+            regionId: regionId
+        },
+        include: {
+            region: {
+                select: {
+                    id: true,
+                    nombre: true,
+                }
+            },
+            itemsOnCurio: {
+                select: {
+                    id: true,
+                    efecto: true,
+                    item: {
+                        select: {
+                            nombre: true,
+                        }
+                    }
+                }
+            }
+        }
+    });
+    return { status: statusOK, message: "Curios encontrados", data: curios };
+}

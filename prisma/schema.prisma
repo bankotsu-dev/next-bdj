@@ -24,7 +24,7 @@ model Region {
   img           String  @db.VarChar(255)
   provisiones   String? @db.Text
   curios        Curio[]
-  jefes         Jefe[]
+  jefes         RegionOnJefe[]
   items         ItemsOnRegion[]
 }
 
@@ -74,38 +74,60 @@ model Clase {
   img_retrato   String  @db.VarChar(255)
   img           String  @db.VarChar(255)
   formaciones   Formacion[]
-  jefes         Jefe[]
+  jefes         ClaseOnJefe[]
 }
 
 model Formacion{
   id            Int     @id @default(autoincrement())
   descripcion   String? @db.VarChar(255)
   clases        Clase[]
-  jefes         Jefe[]
 }
 
 model Jefe{
+  id                Int     @id @default(autoincrement())
+  nombre            String  @db.VarChar(255)
+  img               String  @db.VarChar(255)
+  img_stats         String  @db.VarChar(255)
+  comportamiento    String  @db.Text
+  estrategia        String  @db.Text
+  memorias_1        String? @db.Text
+  memorias_2        String? @db.Text
+  memorias_3        String? @db.Text
+  skills            Skill[]
+  region            RegionOnJefe[]
+  clases            ClaseOnJefe[]
+}
+
+model ClaseOnJefe{
   id            Int     @id @default(autoincrement())
-  nombre        String  @db.VarChar(255)
-  img           String  @db.VarChar(255)
+  jefeId        Int
+  jefe          Jefe    @relation(fields: [jefeId], references: [id])
+  claseId       Int
+  clase         Clase   @relation(fields: [claseId], references: [id])
   descripcion   String  @db.Text
-  stats_desc    String  @db.Text
-  img_stats     String  @db.VarChar(255)
-  estrategias   String? @db.Text
-  memorias_1    String? @db.Text
-  memorias_2    String? @db.Text
-  memorias_3    String? @db.Text
-  skills        Skill[]
-  region        Region[]
-  formaciones   Formacion[]
-  clases        Clase[]
+}
+
+model RegionOnJefe{
+  id            Int     @id @default(autoincrement())
+  jefeId        Int
+  jefe          Jefe    @relation(fields: [jefeId], references: [id])
+  regionId      Int
+  region        Region  @relation(fields: [regionId], references: [id])
 }
 
 model Skill{
   id            Int     @id @default(autoincrement())
-  nombre        String  @db.VarChar(255)
-  descripcion   String  @db.Text
-  stats         String  @db.VarChar(255)
+  level         Int     @default(1) //1: Apprentice , 2: Veteran , 3: Champion
+  name          String  @db.VarChar(255)
+  range         String  @db.VarChar(255)
+  rank          String  @db.VarChar(255)
+  target        String  @db.VarChar(255)
+  acc           String  @db.VarChar(255)
+  crit          String  @db.VarChar(255)
+  dmg           String  @db.VarChar(255)
+  target_effect String  @db.VarChar(255)
+  self_effect   String  @db.VarChar(255)
+  notes         String  @db.VarChar(255)
   jefe          Jefe    @relation(fields: [jefeId], references: [id])
   jefeId        Int
 }

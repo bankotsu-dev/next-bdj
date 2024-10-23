@@ -69,24 +69,28 @@ export async function getRegiones() {
     return regiones;
 }
 
-export async function getRegion(id: number) {
-    const region = await prisma.region.findUnique({
-        where: {
-            id: id
-        }
-    });
-    if (!region) {
-        return {
-            id: 0,
-            nombre: "REGION NO ENCONTRADA",
-            frase: "REGION NO ENCONTRADA",
-            descripcion: "REGION NO ENCONTRADA",
-            desc_corta: "REGION NO ENCONTRADA",
-            img: "dd/regiones/pmosjvxtbkawoqppbzks",
-            provisiones: "REGION NO ENCONTRADA",
-        };
+export async function getRegion(id: number): Promise<Response> {
+    try {
+        const region = await prisma.region.findUnique({
+            where: {
+                id: id
+            },
+            include: {
+                jefes: {
+                    select: {
+                        jefe: true
+                    }
+                }
+            }
+        });
+        return { status: statusOK, message: "Provisiones encontradas", data: region };
+    } catch (error) {
+        console.log(error);
+        return { status: statusError, message: "Error al buscar región, revise la consola del servidor" };
     }
-    return region;
+
+
+    
 }
 
 export async function getProvisiones(regionId: number, tipo: number): Promise<Response> {
@@ -326,4 +330,11 @@ export async function getCuriosByRegion(regionId: number): Promise<Response> {
         }
     });
     return { status: statusOK, message: "Curios encontrados", data: curios };
+}
+
+export async function getJefesByRegion(regionId: number): Promise<Response> {
+    const data = await prisma.regionOnJefe.findMany({
+        where: { regionId: regionId },
+    });
+    return { status: statusOK, message: "Jefes encontrados", data: data };
 }

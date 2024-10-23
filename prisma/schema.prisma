@@ -88,6 +88,7 @@ model Jefe{
   nombre            String  @db.VarChar(255)
   img               String  @db.VarChar(255)
   img_stats         String  @db.VarChar(255)
+  descripcion       String? @db.Text
   comportamiento    String  @db.Text
   estrategia        String  @db.Text
   memorias_1        String? @db.Text

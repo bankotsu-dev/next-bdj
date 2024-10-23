@@ -1,15 +1,14 @@
 
-import { getCuriosByRegion, getRegion } from "@/lib/actions";
+import { getCuriosByRegion, getRegion, getJefesByRegion } from "@/lib/actions";
 import { RegionImg, RegionProvisiones, Tittle } from "@/components/darkest-dungeon/index";
 import { CurioCard } from "@/components/darkest-dungeon/curios/curio-card";
 import { Curio } from "@/lib/definitions";
 
-
 export default async function Page({ params }: { params: { id: string } }) {
-  const region = await getRegion(parseInt(params.id));
+  const resp = await getRegion(parseInt(params.id));
   const data = await getCuriosByRegion(parseInt(params.id));
+  const region = resp.data;
   const curios = data.data as Curio[];
-  console.log(curios);
 
   return (
     <main className="md:text-lg">
@@ -37,6 +36,15 @@ export default async function Page({ params }: { params: { id: string } }) {
           })
         }
         <Tittle tittle="JEFES"></Tittle>
+        { region.jefes.map((data:any) => {
+          const jefe = data.jefe;
+          return (
+            <div key={jefe.id}>
+              <div className="text-2xl">{jefe.nombre}</div>
+              <div className="my-4">{jefe.img}</div>
+            </div>
+          )
+        })}
       </div>
     </main>
   )
